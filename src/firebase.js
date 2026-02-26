@@ -1,23 +1,22 @@
-// src/firebase.js
 import { initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
-import { getFirestore } from 'firebase/firestore' // Раскомментируй, если будешь использовать базу данных
+import { getFirestore } from 'firebase/firestore'
 
-// Вставь сюда свою конфигурацию из консоли Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyAbQhY1HdUXRi1_UqUqH7xZS1-RCACbH7c",
-  authDomain: "my-vue-auth-project-1a5b8.firebaseapp.com",
-  projectId: "my-vue-auth-project-1a5b8",
-  storageBucket: "my-vue-auth-project-1a5b8.firebasestorage.app",
-  messagingSenderId: "905367218420",
-  appId: "1:905367218420:web:b5a2d4f9ea35076a4296a1"
-};
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
+}
 
-// Инициализируем Firebase
+// Для отладки: посмотри, что реально загрузилось (потом удали)
+console.log('Firebase Config:', firebaseConfig)
+
 const firebaseApp = initializeApp(firebaseConfig)
 
-// Создаём экземпляры сервисов, которые будем использовать
 export const auth = getAuth(firebaseApp)
-export const db = getFirestore(firebaseApp) // Раскомментируй для базы данных
+export const db = getFirestore(firebaseApp)
 
 export default firebaseApp
